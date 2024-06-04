@@ -1,0 +1,20 @@
+使用nginx host前端网页
+
+设置nginx的config文件：sudo nano /opt/homebrew/etc/nginx/nginx.conf 
+user改成 宋腾霄 Admin
+把http里server里的location里的root 修改为前端网页的路径
+这里是（/Users/songtengxiao/Desktop/Playground/JavaWeb/FrontEnd/nginx-1.22.0-tlias/html）
+
+注意要和老师的conf file内容一致，以下内容要写进去
+        location ^~ /api/ {
+			rewrite ^/api/(.*)$ /$1 break;
+			proxy_pass http://localhost:8080;
+        }
+
+
+
+开启nginx：sudo nginx
+关闭nginx：sudo nginx -s stop
+检查nginx状态：pgrep nginx   （如果是running状态会显示相应的pid，都关闭了什么都不显示）
+
+访问：localhost:90
